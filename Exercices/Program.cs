@@ -14,8 +14,11 @@ do
             switch (option)
             {
                 case 1:
+                    Console.WriteLine("");
                     Console.WriteLine("Você escolheu a opção 1");
-                    IsPrime();
+                    Console.WriteLine(IsPrime());
+                    Console.ReadKey();
+                    Console.Clear();
                     break;
                 case 2:
                     Console.WriteLine("Saindo...");
@@ -36,11 +39,23 @@ do
     }
 } while (option != 2);
 
-void IsPrime()
+string IsPrime()
 {
     int number;
     Console.WriteLine("Informe o número a verificar se é primo:");
-    int.TryParse(Console.ReadLine(), out number);
-
-
+    if(int.TryParse(Console.ReadLine(), out number))
+    {
+        if (number % 2 == 1 && number % number == 0)
+        {
+            return "Sim, ele é primo";
+        }
+        else
+        {
+            return "Não, não é primo";
+        }
+    }
+    else
+    {
+        return "Favor informar um número.";
+    };
 }
