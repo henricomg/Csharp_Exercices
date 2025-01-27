@@ -4,12 +4,13 @@ do
 {
     Console.WriteLine("Digite um número de opção de exercício:");
     Console.WriteLine("1. Verificar se o número é primo");
-    Console.WriteLine("2. Sair");
+    Console.WriteLine("2. Imprimir uma sequência de Fibonacci");
+    Console.WriteLine("3. Sair");
     Console.Write("Digite a opção desejada: ");
 
     if (int.TryParse(Console.ReadLine(), out option))
     {
-        if (option >= 1 && option <= 2)
+        if (option >= 1 && option <= 3)
         {
             switch (option)
             {
@@ -21,7 +22,11 @@ do
                     Console.Clear();
                     break;
                 case 2:
-                    Console.WriteLine("Saindo...");
+                    Console.WriteLine("");
+                    Console.WriteLine("Você escolheu a opção 2");
+                    Fibonacci();
+                    Console.ReadKey();
+                    Console.Clear();
                     break;
                 default:
                     Console.WriteLine("Opção inválida!");
@@ -30,14 +35,18 @@ do
         }
         else
         {
-            Console.WriteLine("O número deve corresponder a uma opção!");
+            Console.WriteLine("O número deve corresponder a uma opção");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
     else
     {
         Console.WriteLine("Entrada inválida. Digite um número.");
+        Console.ReadKey();
+        Console.Clear();
     }
-} while (option != 2);
+} while (option != 3);
 
 string IsPrime()
 {
@@ -56,6 +65,28 @@ string IsPrime()
     }
     else
     {
-        return "Favor informar um número.";
+        return "Favor informar um número inteiro.";
+    };
+}
+
+void Fibonacci()
+{
+    int qtd, soma, numA = 1, numB = 0, count = 0;
+    Console.WriteLine("Quantos números gostaria de gerar?");
+    if (int.TryParse(Console.ReadLine(), out qtd))
+    {
+        Console.WriteLine("Reposta:");
+        while(count < qtd)
+        {
+            Console.Write(numA+",");
+            soma = numA + numB;
+            numB = numA;
+            numA = soma;
+            count++;
+        }
+    }
+    else
+    {
+        Console.WriteLine("Favor informar um número inteiro.");
     };
 }
