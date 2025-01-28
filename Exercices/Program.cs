@@ -5,12 +5,13 @@ do
     Console.WriteLine("Digite um número de opção de exercício:");
     Console.WriteLine("1. Verificar se o número é primo");
     Console.WriteLine("2. Imprimir uma sequência de Fibonacci");
-    Console.WriteLine("3. Sair");
+    Console.WriteLine("3. Imprimir uma pirâmide no console");
+    Console.WriteLine("4. Sair");
     Console.Write("Digite a opção desejada: ");
 
     if (int.TryParse(Console.ReadLine(), out option))
     {
-        if (option >= 1 && option <= 3)
+        if (option >= 1 && option <= 4)
         {
             switch (option)
             {
@@ -25,6 +26,13 @@ do
                     Console.WriteLine("");
                     Console.WriteLine("Você escolheu a opção 2");
                     Fibonacci();
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
+                case 3:
+                    Console.WriteLine("");
+                    Console.WriteLine("Você escolheu a opção 3");
+                    Pyramid();
                     Console.ReadKey();
                     Console.Clear();
                     break;
@@ -46,7 +54,7 @@ do
         Console.ReadKey();
         Console.Clear();
     }
-} while (option != 3);
+} while (option != 4);
 
 string IsPrime()
 {
@@ -86,6 +94,27 @@ void Fibonacci()
         }
     }
     else
+    {
+        Console.WriteLine("Favor informar um número inteiro.");
+    };
+}
+
+void Pyramid()
+{
+    int heigth;
+    Console.WriteLine("Qual será a altura da sua pirâmide?");
+    if (int.TryParse(Console.ReadLine(), out heigth))
+    {
+        Console.WriteLine("");
+        for (int i=1; i<=heigth; i++)
+        {
+            for (int j=1; j<=i; j++ )
+            {
+                Console.Write("#");               
+            }
+            Console.WriteLine("");
+        }
+    }else
     {
         Console.WriteLine("Favor informar um número inteiro.");
     };
