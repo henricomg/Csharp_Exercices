@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.Text;
 
 int option;
 
@@ -14,50 +15,41 @@ do
 
     if (int.TryParse(Console.ReadLine(), out option))
     {
-        if (option >= 1 && option <= 5)
+        switch (option)
         {
-            switch (option)
-            {
-                case 1:
-                    Console.WriteLine("");
-                    Console.WriteLine("Você escolheu a opção 1");
-                    Console.WriteLine(IsPrime());
-                    Console.ReadKey();
-                    Console.Clear();
-                    break;
-                case 2:
-                    Console.WriteLine("");
-                    Console.WriteLine("Você escolheu a opção 2");
-                    Fibonacci();
-                    Console.ReadKey();
-                    Console.Clear();
-                    break;
-                case 3:
-                    Console.WriteLine("");
-                    Console.WriteLine("Você escolheu a opção 3");
-                    Pyramid();
-                    Console.ReadKey();
-                    Console.Clear();
-                    break;
-                case 4:
-                    Console.WriteLine("");
-                    Console.WriteLine("Você escolheu a opção 4");
-                    IMC();
-                    Console.Clear();
-                    break;
-                case 5:
-                    Console.WriteLine("Sair..");
-                    break;
-                default:
-                    Console.WriteLine("Opção inválida!");
-                    break;
-            }
-        }
-        else
-        {
-            Console.WriteLine("O número deve corresponder a uma opção");
-            Console.ReadKey();
-            Console.Clear();
+            case 1:
+                Console.WriteLine("");
+                Console.WriteLine("Você escolheu a opção 1");
+                Console.WriteLine(IsPrime());
+                Console.ReadKey();
+                Console.Clear();
+                break;
+            case 2:
+                Console.WriteLine("");
+                Console.WriteLine("Você escolheu a opção 2");
+                Fibonacci();
+                Console.ReadKey();
+                Console.Clear();
+                break;
+            case 3:
+                Console.WriteLine("");
+                Console.WriteLine("Você escolheu a opção 3");
+                Pyramid();
+                Console.ReadKey();
+                Console.Clear();
+                break;
+            case 4:
+                Console.WriteLine("");
+                Console.WriteLine("Você escolheu a opção 4");
+                IMC();
+                Console.Clear();
+                break;
+            case 5:
+                Console.WriteLine("Sair..");
+                break;
+            default:
+                Console.WriteLine("Opção inválida!");
+                break;
         }
     }
     else
@@ -122,16 +114,22 @@ void Pyramid()
     Console.WriteLine("Qual será a altura da sua pirâmide?");
     if (int.TryParse(Console.ReadLine(), out heigth))
     {
-        Console.WriteLine("");
-        for (int i=1; i<=heigth; i++)
+        // for para cada linha
+        for (int i = 1; i <= heigth; i++)
         {
-            for (int j=1; j<=i; j++ )
-            {
-                Console.Write("#");               
-            }
-            Console.WriteLine("");
+            StringBuilder sb = new StringBuilder();
+
+            //Imprime os espaços
+            sb.Append(' ', heigth - i);
+
+            //imprime os '#'
+            sb.Append('#', 2 * i - 1);
+
+            //nova linha
+            Console.WriteLine(sb.ToString());
         }
-    }else
+    }
+    else
     {
         Console.WriteLine("Favor informar um número inteiro.");
     };
@@ -148,7 +146,7 @@ void IMC()
         Console.WriteLine("------------IMC--------------");
         Console.WriteLine("1 - Adicionar registro");
         Console.WriteLine("2 - Consultar registros");
-        Console.WriteLine("3 - Sair");
+        Console.WriteLine("3 - Voltar para o menu");
         Console.WriteLine("-----------------------------");
 
         Console.WriteLine();
