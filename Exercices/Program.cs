@@ -10,7 +10,8 @@ do
     Console.WriteLine("2. Imprimir uma sequência de Fibonacci");
     Console.WriteLine("3. Imprimir uma pirâmide no console");
     Console.WriteLine("4. Calculo de IMC");
-    Console.WriteLine("5. Sair");
+    Console.WriteLine("5. Desafio do troco");
+    Console.WriteLine("6. Sair");
     Console.Write("Digite a opção desejada: ");
 
     if (int.TryParse(Console.ReadLine(), out option))
@@ -45,6 +46,12 @@ do
                 Console.Clear();
                 break;
             case 5:
+                Console.WriteLine("");
+                Console.WriteLine("Você escolheu a opção 5");
+                ExchangeCalculator();
+                Console.Clear();
+                break;
+            case 6:
                 Console.WriteLine("Sair..");
                 break;
             default:
@@ -58,7 +65,7 @@ do
         Console.ReadKey();
         Console.Clear();
     }
-} while (option != 5);
+} while (option != 6);
 
 string IsPrime()
 {
@@ -222,4 +229,47 @@ void IMC()
             Console.Clear();
         }
     }
+}
+
+void ExchangeCalculator()
+{
+    Console.Clear();
+
+    Console.Write("Digite o valor total da compra: ");
+    decimal valorCompra = decimal.Parse(Console.ReadLine());
+
+    Console.Write("Digite o valor recebido: ");
+    decimal valorRecebido = decimal.Parse(Console.ReadLine());
+
+    decimal troco = valorRecebido - valorCompra;
+
+    Console.WriteLine();
+    Console.WriteLine($"Troco total: R${troco}");
+
+    // Cédulas disponíveis
+    decimal[] cedulas = { 100, 50, 20, 10, 5, 2, 1, 0.50m, 0.25m, 0.10m, 0.05m, 0.01m };
+    int[] quantidadeCedulas = new int[cedulas.Length];
+
+    // Calcular a quantidade de cada cédula
+    for (int i = 0; i < cedulas.Length; i++)
+    {
+        if (troco >= cedulas[i])
+        {
+            quantidadeCedulas[i] = (int)(troco / cedulas[i]);
+            troco -= quantidadeCedulas[i] * cedulas[i];
+        }
+    }
+
+    // Exibir o troco em cédulas
+    Console.WriteLine("Troco em cédulas:");
+    for (int i = 0; i < cedulas.Length; i++)
+    {
+        if (quantidadeCedulas[i] > 0)
+        {
+            Console.WriteLine($"{quantidadeCedulas[i]} x R${cedulas[i]}");
+        }
+    }
+
+    Console.ReadLine();
+    Console.Clear();
 }
